@@ -52,16 +52,17 @@ public class GameManager : MonoBehaviour
 
     // UI references
     public GameObject gameOverPanel;
-    public TMPro.TMP_Text powerupMessageText; // Pour afficher les messages de powerup
+    public TMPro.TMP_Text bonusText; // Pour afficher les messages de powerup
     public GameObject playerDamageEffect; // Effet visuel quand un ennemi traverse
     public TMPro.TMP_Text countdownText;
 
     private bool isGameOver = false;
     private float restartCountdown = 3.0f;
 
-    public event Action<int> OnScoreChanged;
-    public event Action<int> OnLivesChanged;
+    public event Action<int>   OnScoreChanged;
+    public event Action<int>   OnLivesChanged;
     public event Action<float> OnTimeChanged;
+    public event Action<int, int>   OnBonusChanged;
     
     // Avant de remplacer le syst�me de collisions, il faut cr�er des classes pour g�rer les collisions
     // Ces classes seront attach�es aux objets du jeu concern�s
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
         spawnRate = initialSpawnRate;
         nextSpawnTime = Time.time + spawnRate;
         if (gameOverPanel) gameOverPanel.SetActive(false);
-        if (powerupMessageText) powerupMessageText.gameObject.SetActive(false);
+        if (bonusText) bonusText.gameObject.SetActive(false);
 
         // S'assurer que le joueur a les composants n�cessaires pour les collisions
         SetupCollisionComponents(playerShip, true, false, "Player");
@@ -127,9 +128,6 @@ public class GameManager : MonoBehaviour
         {
             playerShip.AddComponent<PlayerCollider>();
         }
-
-        OnScoreChanged?.Invoke(score);
-        OnLivesChanged?.Invoke(lives);
     }
 
     // Nouvelle m�thode pour configurer les composants de collision
@@ -518,30 +516,15 @@ public class GameManager : MonoBehaviour
         if (bulletCount < maxBulletCount)
         {
             bulletCount++;
-
-            // Affichage d'un message temporaire pour informer le joueur
-            StartCoroutine(ShowPowerupMessage("Weapon Upgraded! Bullets: " + bulletCount));
         }
         else
         {
             // Bonus de score si le joueur a d�j� le maximum de projectiles
             score += 200;
             OnScoreChanged?.Invoke(score);
-            StartCoroutine(ShowPowerupMessage("Max Weapon Level! +200 Score"));
         }
-    }
 
-    // Coroutine pour afficher un message temporaire
-    IEnumerator ShowPowerupMessage(string message)
-    {
-        if (powerupMessageText != null)
-        {
-            powerupMessageText.text = message;
-            powerupMessageText.gameObject.SetActive(true);
-            yield return new WaitForSeconds(2.0f);
-            powerupMessageText.gameObject.SetActive(false);
-        }
-        yield return null;
+        OnBonusChanged?.Invoke(bulletCount, maxBulletCount);
     }
 
     void GameOver()

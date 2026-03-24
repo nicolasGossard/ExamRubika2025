@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SubscribeWhenReady());
     }
 
+    ////////// ABONNEMENTS //////////
+
     private IEnumerator SubscribeWhenReady()
     {
         while (GameManager.Instance == null)
@@ -33,6 +35,7 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.OnScoreChanged += UpdateScoreUI;
             GameManager.Instance.OnLivesChanged += UpdateLivesUI;
             GameManager.Instance.OnTimeChanged  += UpdateTimeUI;
+            GameManager.Instance.OnBonusChanged += UpdateBonusUI;
             isSubscribed = true;
         }
 
@@ -47,14 +50,19 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.OnScoreChanged -= UpdateScoreUI;
             GameManager.Instance.OnLivesChanged -= UpdateLivesUI;
             GameManager.Instance.OnTimeChanged  -= UpdateTimeUI;
+            GameManager.Instance.OnBonusChanged -= UpdateBonusUI;
             isSubscribed = false;
         }
     }
+
+    ////////// AFFICHAGE DU SCORE //////////
 
     private void UpdateScoreUI(int newScore)
     {
         scoreText.text = "SCORE: " + newScore;
     }
+
+    ////////// AFFICHAGE DE LA VIE //////////
 
     private void UpdateLivesUI(int newLives)
     {
@@ -62,10 +70,28 @@ public class UIManager : MonoBehaviour
         livesText.text = "LIVES: " + colorLives + newLives + "</color>";
     }
 
+    ////////// AFFICHAGE DU TEMPS ÉCOULÉ //////////
+
     private void UpdateTimeUI(float gameTime)
     {
         int minutes = Mathf.FloorToInt(gameTime / 60);
         int seconds = Mathf.FloorToInt(gameTime % 60);
         timeText.text = string.Format("TIME: {0:00}:{1:00}", minutes, seconds);
+    }
+
+    ////////// AFFICHAGE DE BONUS //////////
+    
+    private void UpdateBonusUI(int bulletCount, int maxBulletCount)
+    {
+        bonusText.text = bulletCount == maxBulletCount ? "MAX WEAPON LEVEL!  +200 SCORE" : "WEAPON UPGRADED!  BULLETS: " + bulletCount;
+        StartCoroutine(UpdateBonusUICoroutine());
+    }
+
+    private IEnumerator UpdateBonusUICoroutine()
+    {
+        bonusText.enabled = true;
+        yield return new WaitForSeconds(2.0f);
+        bonusText.enabled = false;
+        yield return null;
     } 
 }
