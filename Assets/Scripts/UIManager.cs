@@ -6,8 +6,8 @@ public class UIManager : MonoBehaviour
     public TMPro.TMP_Text scoreText;
     public TMPro.TMP_Text livesText;
     public TMPro.TMP_Text timeText;
+    public TMPro.TMP_Text bonusText;
     public TMPro.TMP_Text countdownText;
-    public TMPro.TMP_Text powerupMessageText;
 
     private bool isSubscribed = false;
 
@@ -15,8 +15,8 @@ public class UIManager : MonoBehaviour
     {
         scoreText.enabled = true;
         livesText.enabled = true;
-        timeText.enabled = true;
-        powerupMessageText.enabled = false;
+        timeText.enabled  = true;
+        bonusText.enabled = false;
 
         StartCoroutine(SubscribeWhenReady());
     }
@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.OnScoreChanged += UpdateScoreUI;
             GameManager.Instance.OnLivesChanged += UpdateLivesUI;
+            GameManager.Instance.OnTimeChanged  += UpdateTimeUI;
             isSubscribed = true;
         }
 
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.OnScoreChanged -= UpdateScoreUI;
             GameManager.Instance.OnLivesChanged -= UpdateLivesUI;
+            GameManager.Instance.OnTimeChanged  -= UpdateTimeUI;
             isSubscribed = false;
         }
     }
@@ -56,6 +58,14 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLivesUI(int newLives)
     {
-        livesText.text = "LIVES: " + newLives;
+        string colorLives = newLives == 3 ? "<color=green>" : newLives == 2 ? "<color=yellow>" : "<color=red>"; 
+        livesText.text = "LIVES: " + colorLives + newLives + "</color>";
     }
+
+    private void UpdateTimeUI(float gameTime)
+    {
+        int minutes = Mathf.FloorToInt(gameTime / 60);
+        int seconds = Mathf.FloorToInt(gameTime % 60);
+        timeText.text = string.Format("TIME: {0:00}:{1:00}", minutes, seconds);
+    } 
 }

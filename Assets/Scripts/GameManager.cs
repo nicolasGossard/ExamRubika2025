@@ -51,11 +51,8 @@ public class GameManager : MonoBehaviour
     private float nextSpawnTime;
 
     // UI references
-    public TMPro.TMP_Text scoreText;
-    public TMPro.TMP_Text livesText;
     public GameObject gameOverPanel;
     public TMPro.TMP_Text powerupMessageText; // Pour afficher les messages de powerup
-    public TMPro.TMP_Text timeText; // Pour afficher le temps �coul�
     public GameObject playerDamageEffect; // Effet visuel quand un ennemi traverse
     public TMPro.TMP_Text countdownText;
 
@@ -64,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> OnScoreChanged;
     public event Action<int> OnLivesChanged;
+    public event Action<float> OnTimeChanged;
     
     // Avant de remplacer le syst�me de collisions, il faut cr�er des classes pour g�rer les collisions
     // Ces classes seront attach�es aux objets du jeu concern�s
@@ -207,18 +205,11 @@ public class GameManager : MonoBehaviour
         {
             // Augmentation du temps de jeu
             gameTime += Time.deltaTime;
+            OnTimeChanged?.Invoke(gameTime);
 
             // Calcul du nouveau taux de spawn en fonction du temps �coul� (en minutes)
             float minutesPlayed = gameTime / 2f;
             spawnRate = Mathf.Max(minSpawnRate, initialSpawnRate - (spawnRateDifficulty * minutesPlayed));
-
-            // Affichage du temps de jeu (optionnel)
-            if (timeText != null)
-            {
-                int minutes = Mathf.FloorToInt(gameTime / 60);
-                int seconds = Mathf.FloorToInt(gameTime % 60);
-                timeText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
-            }
 
             // Gestion des entr�es du joueur
             HandlePlayerInput();
