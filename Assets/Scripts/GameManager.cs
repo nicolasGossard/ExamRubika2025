@@ -371,8 +371,8 @@ public class GameManager : MonoBehaviour
         {
             if (asteroids[i] != null)
             {
-                // Direction al�atoire pour chaque ast�ro�de
-                float randomX = UnityEngine.Random.Range(-0.5f, 0.5f);
+                // Direction aléatoire pour chaque astéroïde
+                float randomX = Pcg32.RangeFloat(-0.5f, 0.5f);
 
                 // Utiliser le Rigidbody pour le mouvement
                 Rigidbody rb = asteroids[i].GetComponent<Rigidbody>();
@@ -460,10 +460,10 @@ public class GameManager : MonoBehaviour
     {
         if (Time.time > nextSpawnTime)
         {
-            if (UnityEngine.Random.value < 0.3f)
+            if (Pcg32.NextFloat() < 0.3f)
             {
                 // Spawn d'un ennemi
-                float randomX = UnityEngine.Random.Range(-8f, 8f);
+                float randomX = Pcg32.RangeFloat(-8f, 8f);
                 // Position de spawn sur l'axe Z au lieu de Y
                 Vector3 spawnPosition = new Vector3(randomX, 0, 9);
                 GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);

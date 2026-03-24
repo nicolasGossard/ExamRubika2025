@@ -5814,7 +5814,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -33, y: 70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889874623
 MonoBehaviour:
@@ -11854,11 +11854,8 @@ MonoBehaviour:
   minSpawnRate: 0.1
   spawnRateDifficulty: 0.1
   powerUps: []
-  scoreText: {fileID: 169593459}
-  livesText: {fileID: 1207875883}
   gameOverPanel: {fileID: 1993041029}
-  powerupMessageText: {fileID: 889874623}
-  timeText: {fileID: 1527363849}
+  bonusText: {fileID: 0}
   playerDamageEffect: {fileID: 6403353413147890401, guid: f9177c7e254ee774498f31c299703063,
     type: 3}
   countdownText: {fileID: 1670553640}
