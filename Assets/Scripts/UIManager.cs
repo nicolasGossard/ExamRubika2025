@@ -17,43 +17,18 @@ public class UIManager : MonoBehaviour
         livesText.enabled = true;
         timeText.enabled  = true;
         bonusText.enabled = false;
-
-        StartCoroutine(SubscribeWhenReady());
     }
 
     ////////// ABONNEMENTS //////////
-
-    private IEnumerator SubscribeWhenReady()
+    
+    private void OnEnable()
     {
-        while (GameManager.Instance == null)
-        {
-            yield return null;
-        }
-
-        if (!isSubscribed)
-        {
-            GameManager.Instance.OnScoreChanged += UpdateScoreUI;
-            Player player = FindAnyObjectByType<Player>();
-            player.OnLivesChanged += UpdateLivesUI;
-            GameManager.Instance.OnTimeChanged  += UpdateTimeUI;
-            GameManager.Instance.OnBonusChanged += UpdateBonusUI;
-            isSubscribed = true;
-        }
-
-        UpdateScoreUI(GameManager.Instance.score);
-        UpdateLivesUI(GameManager.Instance.lives);
+        Player.OnLivesChanged += UpdateLivesUI;
     }
 
     private void OnDisable()
     {
-        if (isSubscribed && GameManager.Instance != null)
-        {
-            GameManager.Instance.OnScoreChanged -= UpdateScoreUI;
-            GameManager.Instance.OnLivesChanged -= UpdateLivesUI;
-            GameManager.Instance.OnTimeChanged  -= UpdateTimeUI;
-            GameManager.Instance.OnBonusChanged -= UpdateBonusUI;
-            isSubscribed = false;
-        }
+        Player.OnLivesChanged -= UpdateLivesUI;
     }
 
     ////////// AFFICHAGE DU SCORE //////////
@@ -65,10 +40,10 @@ public class UIManager : MonoBehaviour
 
     ////////// AFFICHAGE DE LA VIE //////////
 
-    private void UpdateLivesUI(int newLives)
+    private void UpdateLivesUI(int playerLives)
     {
-        string colorLives = newLives == 3 ? "<color=green>" : newLives == 2 ? "<color=yellow>" : "<color=red>"; 
-        livesText.text = "LIVES: " + colorLives + newLives + "</color>";
+        string colorLives = playerLives == 3 ? "<color=green>" : playerLives == 2 ? "<color=yellow>" : "<color=red>"; 
+        livesText.text = "LIVES: " + colorLives + playerLives + "</color>";
     }
 
     ////////// AFFICHAGE DU TEMPS ÉCOULÉ //////////

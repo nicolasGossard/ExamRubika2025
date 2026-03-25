@@ -13,6 +13,11 @@ public abstract class Character : MonoBehaviour
 
     protected bool isSpawned = false;
 
+    public int GetLives()
+    {
+        return livesCharacter;
+    }
+
     public virtual void TakeDammage(int amount)
     {
         livesCharacter -= amount;

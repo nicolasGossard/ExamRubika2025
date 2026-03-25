@@ -1,13 +1,23 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Character
 {
-    public event System.Action<int> OnLivesChanged;
+    public static event System.Action<int> OnLivesChanged;
+    public static event System.Action OnPlayerDied;
 
+    [SerializeField] private GameObject bulletPrefab;
+
+    public int bulletCount = 1; // Nombre de projectiles tir�s simultan�ment
+    public float bulletSpacing = 0.5f; // Espacement horizontal entre les projectiles
+    public int maxBulletCount = 5; // Limite maximale de projectiles simultan�s
+    
     private void Start()
     {
         transform.position = new Vector3(0.0f, 0f, -8.0f);
         isSpawned = true;
+
+        OnLivesChanged?.Invoke(livesCharacter);
     }
 
     private void Update()
@@ -15,12 +25,20 @@ public class Player : Character
         if (isSpawned)
         {
             Move();
+            Fire();
         }
     }
 
     public override void TakeDammage(int amount)
     {
+        base.TakeDammage(amount);
+
         OnLivesChanged?.Invoke(livesCharacter);
+
+        if (livesCharacter <= 0)
+        {
+            OnPlayerDied?.Invoke();
+        }
     }
 
     public override void Move()
@@ -56,5 +74,25 @@ public class Player : Character
         position.x = Mathf.Clamp(position.x, limitsX.x, limitsX.y);
         position.z = Mathf.Clamp(position.z, limitsZ.x, limitsZ.y);
         transform.position = position;
+    }
+
+    private void Fire()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            // Calcul de la position de d�part pour centrer les projectiles
+            float startX = -((bulletCount - 1) * bulletSpacing) / 2;
+
+            // Cr�ation de plusieurs balles c�te � c�te
+            for (int i = 0; i < bulletCount; i++)
+            {
+                // Calcule la position avec l'offset horizontal
+                Vector3 bulletOffset = new Vector3(startX + (i * bulletSpacing), -0.5f, 0.5f);
+                Vector3 spawnPosition = transform.position + bulletOffset;
+
+                // Instanciation du projectile
+                Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+            }
+        }
     }
 }

@@ -40,7 +40,12 @@ public class Asteroid : Character
     protected override void Destroy()
     {
         Player player = FindFirstObjectByType<Player>();
-        player.TakeDammage(1);
+
+        if (player != null)
+        {
+            player.TakeDammage(1);
+        }
+        
         base.Destroy();
     }
 }
