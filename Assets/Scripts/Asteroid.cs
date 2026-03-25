@@ -2,6 +2,21 @@ using UnityEngine;
 
 public class Asteroid : Character
 {
+    private void Start()
+    {
+        float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y); 
+        transform.position = new Vector3(randomX, 0, limitsZ.x);
+        isSpawned = true;
+    }
+
+    private void Update()
+    {
+        if (isSpawned)
+        {
+            Move();
+        }
+    }
+
     public override void Move()
     {
         // Direction aléatoire pour chaque astéroïde
@@ -20,5 +35,12 @@ public class Asteroid : Character
         {
             Destroy();
         }
+    }
+
+    protected override void Destroy()
+    {
+        Player player = FindFirstObjectByType<Player>();
+        player.TakeDammage(1);
+        base.Destroy();
     }
 }

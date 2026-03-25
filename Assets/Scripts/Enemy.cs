@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    private void Start()
+    {
+        float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y);
+        transform.position = new Vector3(randomX, 0, limitsZ.x);
+        isSpawned = true;
+    }
+
+    private void Update()
+    {
+        if (isSpawned)
+        {
+            Move();
+        }
+    }
+
     public override void Move()
     {
-        // Direction aléatoire pour chaque astéroïde
-        float randomX = Pcg32.RangeFloat(-0.5f, 0.5f);
-
-        Vector3 movement = new Vector3(randomX, 0, -1) * speedCharacter * Time.deltaTime;
-        transform.position += movement;
-        transform.Rotate(0, 30 * Time.deltaTime, 0);
+        transform.position += Vector3.back * speedCharacter * Time.deltaTime;
 
         LimitPosition(transform.position);
     }

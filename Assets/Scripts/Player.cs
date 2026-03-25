@@ -2,6 +2,27 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public event System.Action<int> OnLivesChanged;
+
+    private void Start()
+    {
+        transform.position = new Vector3(0.0f, 0f, -8.0f);
+        isSpawned = true;
+    }
+
+    private void Update()
+    {
+        if (isSpawned)
+        {
+            Move();
+        }
+    }
+
+    public override void TakeDammage(int amount)
+    {
+        OnLivesChanged?.Invoke(livesCharacter);
+    }
+
     public override void Move()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

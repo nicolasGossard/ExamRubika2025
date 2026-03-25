@@ -11,6 +11,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Vector2 limitsX;
     [SerializeField] protected Vector2 limitsZ;
 
+    protected bool isSpawned = false;
+
     public virtual void TakeDammage(int amount)
     {
         livesCharacter -= amount;
@@ -21,12 +23,11 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public virtual void Destroy()
+    protected virtual void Destroy()
     {
-       Destroy(this);
+       Destroy(gameObject);
     }
 
     public abstract void Move();
     protected abstract void LimitPosition(Vector3 position);
-    // protected abstract void Spawn();
 }

@@ -33,7 +33,8 @@ public class UIManager : MonoBehaviour
         if (!isSubscribed)
         {
             GameManager.Instance.OnScoreChanged += UpdateScoreUI;
-            GameManager.Instance.OnLivesChanged += UpdateLivesUI;
+            Player player = FindAnyObjectByType<Player>();
+            player.OnLivesChanged += UpdateLivesUI;
             GameManager.Instance.OnTimeChanged  += UpdateTimeUI;
             GameManager.Instance.OnBonusChanged += UpdateBonusUI;
             isSubscribed = true;

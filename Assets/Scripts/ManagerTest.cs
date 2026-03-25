@@ -1,19 +1,43 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class ManagerTest : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject asteroidPrefab;
+
+    [SerializeField] private float nextSpawnTime;
+    [SerializeField] private float initialSpwanRate;
+    [SerializeField] private float spawnRate = 2.0f;
+
+    private bool isGameOver = false;
 
     void Start()
     {
-        if (player == null)
-            player = new Player();
+        Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        nextSpawnTime = Time.time + spawnRate;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        player.Move();
+        SpawnEnemiesAndAsteroids();
+    }
+    
+    void SpawnEnemiesAndAsteroids()
+    {
+        if (Time.time > nextSpawnTime)
+        {
+            if (Pcg32.NextFloat() < 0.3f)
+            {
+                Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(asteroidPrefab, Vector3.zero, Quaternion.identity);
+            }
+
+            nextSpawnTime = Time.time + spawnRate;
+        }
     }
 }
