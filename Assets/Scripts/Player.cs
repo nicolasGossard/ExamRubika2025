@@ -27,10 +27,13 @@ public class Player : Character
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, 5f * Time.deltaTime);
         }
 
-        // Limites de l'�cran pour le joueur
-        Vector3 playerPos = transform.position;
-        playerPos.x = Mathf.Clamp(playerPos.x, -8.4f, 8.4f);
-        playerPos.z = Mathf.Clamp(playerPos.z, -11, -2.5f);
-        transform.position = playerPos;
+        LimitPosition(transform.position);
+    }
+
+    protected override void LimitPosition(Vector3 position)
+    {
+        position.x = Mathf.Clamp(position.x, limitsX.x, limitsX.y);
+        position.z = Mathf.Clamp(position.z, limitsZ.x, limitsZ.y);
+        transform.position = position;
     }
 }

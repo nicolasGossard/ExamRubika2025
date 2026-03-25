@@ -8,6 +8,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected string nameCharacter;
     [SerializeField] protected int livesCharacter;
     [SerializeField] protected int speedCharacter;
+    [SerializeField] protected Vector2 limitsX;
+    [SerializeField] protected Vector2 limitsZ;
 
     public virtual void TakeDammage(int amount)
     {
@@ -25,4 +27,6 @@ public abstract class Character : MonoBehaviour
     }
 
     public abstract void Move();
+    protected abstract void LimitPosition(Vector3 position);
+    // protected abstract void Spawn();
 }
