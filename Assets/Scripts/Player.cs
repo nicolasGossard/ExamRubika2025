@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : Character
+public class Player : Entity
 {
     public static event System.Action<int> OnLivesChanged;
     public static event System.Action OnPlayerDied;
@@ -17,7 +17,7 @@ public class Player : Character
         transform.position = new Vector3(0.0f, 0f, -8.0f);
         isSpawned = true;
 
-        OnLivesChanged?.Invoke(livesCharacter);
+        OnLivesChanged?.Invoke(livesEntity);
     }
 
     private void Update()
@@ -33,9 +33,9 @@ public class Player : Character
     {
         base.TakeDammage(amount);
 
-        OnLivesChanged?.Invoke(livesCharacter);
+        OnLivesChanged?.Invoke(livesEntity);
 
-        if (livesCharacter <= 0)
+        if (livesEntity <= 0)
         {
             OnPlayerDied?.Invoke();
         }
@@ -47,7 +47,7 @@ public class Player : Character
         float verticalInput = Input.GetAxis("Vertical");
 
         // D�placement sur le plan XZ
-        Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * speedCharacter * Time.deltaTime;
+        Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * speedEntity * Time.deltaTime;
         transform.position += movement;
 
         // Calcul des angles de rotation pour les deux axes

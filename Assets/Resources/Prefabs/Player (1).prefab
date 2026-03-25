@@ -5490,9 +5490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0652743624cc490b97e596daa328731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  nameCharacter: Player
-  livesCharacter: 3
-  speedCharacter: 10
+  nameEntity: Player
+  livesEntity: 3
+  speedEntity: 10
   limitsX: {x: -8.4, y: 8.4}
   limitsZ: {x: -11, y: -3}
   bulletPrefab: {fileID: 5389837174213493555, guid: 90cad29684ea649b79293d21e90c32ce,

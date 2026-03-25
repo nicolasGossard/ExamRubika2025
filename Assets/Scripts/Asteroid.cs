@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Asteroid : Character
+public class Asteroid : Entity
 {
     private void Start()
     {
@@ -22,7 +22,7 @@ public class Asteroid : Character
         // Direction aléatoire pour chaque astéroïde
         float randomX = Pcg32.RangeFloat(-0.5f, 0.5f);
 
-        Vector3 movement = new Vector3(randomX, 0, -1) * speedCharacter * Time.deltaTime;
+        Vector3 movement = new Vector3(randomX, 0, -1) * speedEntity * Time.deltaTime;
         transform.position += movement;
         transform.Rotate(0, 30 * Time.deltaTime, 0);
 
@@ -45,7 +45,7 @@ public class Asteroid : Character
         {
             player.TakeDammage(1);
         }
-        
+
         base.Destroy();
     }
 }

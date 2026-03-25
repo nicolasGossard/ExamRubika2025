@@ -28,9 +28,13 @@ public class ManagerTest : MonoBehaviour
 
     void Start()
     {
+        // On instantie le joueur au démarrage, en lui mettant quelconque position de spawn, puisque sa propre méthode
+        // Start le replacera où il faut, idem pour les astéroides et les ennemis dans SpawnEnemiesAndAsteroids
         Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        
         nextSpawnTime = Time.time + spawnRate;
 
+        // On s'assure qu'au démarrage du jeu, isGameOver est bien false et que le panel est bien désactivé
         gameOverPanel.SetActive(false);
         isGameOver = false;
     }

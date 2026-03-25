@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Character
+public class Enemy : Entity
 {
     private void Start()
     {
@@ -19,7 +19,7 @@ public class Enemy : Character
 
     public override void Move()
     {
-        transform.position += Vector3.back * speedCharacter * Time.deltaTime;
+        transform.position += Vector3.back * speedEntity * Time.deltaTime;
 
         LimitPosition(transform.position);
     }

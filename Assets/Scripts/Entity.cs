@@ -1,13 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     [Header("Paramètres du character")]
 
-    [SerializeField] protected string nameCharacter;
-    [SerializeField] protected int livesCharacter;
-    [SerializeField] protected int speedCharacter;
+    [SerializeField] protected string nameEntity;
+    [SerializeField] protected int livesEntity;
+    [SerializeField] protected int speedEntity;
     [SerializeField] protected Vector2 limitsX;
     [SerializeField] protected Vector2 limitsZ;
 
@@ -15,14 +15,14 @@ public abstract class Character : MonoBehaviour
 
     public int GetLives()
     {
-        return livesCharacter;
+        return livesEntity;
     }
 
     public virtual void TakeDammage(int amount)
     {
-        livesCharacter -= amount;
+        livesEntity -= amount;
 
-        if (livesCharacter <= 0)
+        if (livesEntity <= 0)
         {
             Destroy();
         }

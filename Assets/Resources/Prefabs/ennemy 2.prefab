@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e35eada1fc7458a9baf1f26c90488a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  nameCharacter: Enemy
-  livesCharacter: 2
-  speedCharacter: 5
+  nameEntity: Enemy
+  livesEntity: 2
+  speedEntity: 3
   limitsX: {x: -8, y: 8}
   limitsZ: {x: 9, y: -12}
 --- !u!1 &1097584832842061765

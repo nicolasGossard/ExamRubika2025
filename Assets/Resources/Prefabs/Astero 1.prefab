@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470f7dffc4d9646b29bf3ec119bd703f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroid
-  nameCharacter: Asteroid
-  livesCharacter: 1
-  speedCharacter: 5
+  nameEntity: Astaroid
+  livesEntity: 1
+  speedEntity: 2
   limitsX: {x: -8, y: 8}
   limitsZ: {x: 9, y: -12}
