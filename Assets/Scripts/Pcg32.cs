@@ -27,7 +27,7 @@ public static class Pcg32
         // On tansforme l'heure actuelle précise en nombre pour crééer initState
         ulong initState = (ulong)DateTime.UtcNow.Ticks;
 
-        // On récupère le numéro de processus de notre jeu Unity qui tourne
+        // On récupère l'identifiant du processus de notre jeu Unity en cours d'exécution
         ulong processId = (ulong)Process.GetCurrentProcess().Id;
 
         // On récupère la valeur actuelle d'une horloge haute précision du système
@@ -41,6 +41,10 @@ public static class Pcg32
         Seed(initState, initSeq);
     }
 
+    // Seed crée notre state et notre inc à partir des valeurs reçues dans ses paramètres. Cette méthode
+    // est publique pour nous permettre si besoin de l'utiliser depuis un autre script, et ainsi imposer
+    // notre propre state et inc afin d'avoir en mains un générateur dont les tirages seront toujours
+    // les mêmes, ce qui peut être très utile quand on veut tester le rng par exemple
     public static void Seed(ulong initState, ulong initSeq)
     {
         state = 0UL;

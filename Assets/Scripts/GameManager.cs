@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [Header("Explosion")]
     public ExplosionManager explosionManager;
-
-    public static GameManager Instance { get; private set; }
 
     // R�f�rence directe � tous les objets du jeu
     public GameObject playerShip;
@@ -59,10 +59,10 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     private float restartCountdown = 3.0f;
 
-    public event Action<int>   OnScoreChanged;
-    public event Action<int>   OnLivesChanged;
-    public event Action<float> OnTimeChanged;
-    public event Action<int, int>   OnBonusChanged;
+    public event Action<int>      OnScoreChanged;
+    public event Action<int>      OnLivesChanged;
+    public event Action<float>    OnTimeChanged;
+    public event Action<int, int> OnBonusChanged;
     
     // Avant de remplacer le syst�me de collisions, il faut cr�er des classes pour g�rer les collisions
     // Ces classes seront attach�es aux objets du jeu concern�s
@@ -79,6 +79,74 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    void Start()
+    {
+        // Initialisation
+        score = 0;
+        lives = 3;
+        bulletCount = 1;
+        gameTime = 0f;
+        spawnRate = initialSpawnRate;
+        nextSpawnTime = Time.time + spawnRate;
+        if (gameOverPanel) gameOverPanel.SetActive(false);
+        if (bonusText) bonusText.gameObject.SetActive(false);
+
+        // S'assurer que le joueur a les composants n�cessaires pour les collisions
+        SetupCollisionComponents(playerShip, true, false, "Player");
+
+        // Ajouter le script de gestion de collision au joueur
+        if (playerShip.GetComponent<PlayerCollider>() == null)
+        {
+            playerShip.AddComponent<PlayerCollider>();
+        }
+    }
+
+    void Update()
+    {
+        if (!isGameOver)
+        {
+            // Augmentation du temps de jeu
+            gameTime += Time.deltaTime;
+            OnTimeChanged?.Invoke(gameTime);
+
+            // Calcul du nouveau taux de spawn en fonction du temps �coul� (en minutes)
+            float minutesPlayed = gameTime / 2f;
+            spawnRate = Mathf.Max(minSpawnRate, initialSpawnRate - (spawnRateDifficulty * minutesPlayed));
+
+            // Gestion des entr�es du joueur
+            HandlePlayerInput();
+
+            // D�placement de tous les objets
+            MoveEnemies();
+            MoveAsteroids();
+            MoveBullets();
+
+            // Nous ne v�rifions plus les collisions manuellement
+            // Les collisions sont maintenant g�r�es par les �v�nements OnTriggerEnter/OnCollisionEnter
+
+            // G�n�ration de nouveaux ennemis/ast�ro�des
+            SpawnEnemiesAndAsteroids();
+        }
+
+        // Gestion du d�compte de red�marrage
+        if (isGameOver)
+        {
+            restartCountdown -= Time.deltaTime;
+
+            // Mise � jour du texte avec la valeur arrondie � l'entier sup�rieur
+            if (countdownText != null)
+            {
+                countdownText.text = "Red�marrage dans: " + Mathf.Ceil(restartCountdown).ToString();
+            }
+
+            // Lorsque le d�compte atteint z�ro
+            if (restartCountdown <= 0)
+            {
+                RestartGame();
+            }
+        }
     }
 
     // M�thode pour g�rer les collisions avec le joueur
@@ -105,28 +173,6 @@ public class GameManager : MonoBehaviour
         if (lives <= 0)
         {
             GameOver();
-        }
-    }
-
-    void Start()
-    {
-        // Initialisation
-        score = 0;
-        lives = 3;
-        bulletCount = 1;
-        gameTime = 0f;
-        spawnRate = initialSpawnRate;
-        nextSpawnTime = Time.time + spawnRate;
-        if (gameOverPanel) gameOverPanel.SetActive(false);
-        if (bonusText) bonusText.gameObject.SetActive(false);
-
-        // S'assurer que le joueur a les composants n�cessaires pour les collisions
-        SetupCollisionComponents(playerShip, true, false, "Player");
-
-        // Ajouter le script de gestion de collision au joueur
-        if (playerShip.GetComponent<PlayerCollider>() == null)
-        {
-            playerShip.AddComponent<PlayerCollider>();
         }
     }
 
@@ -195,52 +241,6 @@ public class GameManager : MonoBehaviour
 
         score += addScore;
         OnScoreChanged?.Invoke(score);
-    }
-
-    void Update()
-    {
-        if (!isGameOver)
-        {
-            // Augmentation du temps de jeu
-            gameTime += Time.deltaTime;
-            OnTimeChanged?.Invoke(gameTime);
-
-            // Calcul du nouveau taux de spawn en fonction du temps �coul� (en minutes)
-            float minutesPlayed = gameTime / 2f;
-            spawnRate = Mathf.Max(minSpawnRate, initialSpawnRate - (spawnRateDifficulty * minutesPlayed));
-
-            // Gestion des entr�es du joueur
-            HandlePlayerInput();
-
-            // D�placement de tous les objets
-            MoveEnemies();
-            MoveAsteroids();
-            MoveBullets();
-
-            // Nous ne v�rifions plus les collisions manuellement
-            // Les collisions sont maintenant g�r�es par les �v�nements OnTriggerEnter/OnCollisionEnter
-
-            // G�n�ration de nouveaux ennemis/ast�ro�des
-            SpawnEnemiesAndAsteroids();
-        }
-
-        // Gestion du d�compte de red�marrage
-        if (isGameOver)
-        {
-            restartCountdown -= Time.deltaTime;
-
-            // Mise � jour du texte avec la valeur arrondie � l'entier sup�rieur
-            if (countdownText != null)
-            {
-                countdownText.text = "Red�marrage dans: " + Mathf.Ceil(restartCountdown).ToString();
-            }
-
-            // Lorsque le d�compte atteint z�ro
-            if (restartCountdown <= 0)
-            {
-                RestartGame();
-            }
-        }
     }
 
     void HandlePlayerInput()
