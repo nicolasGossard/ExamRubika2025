@@ -6,7 +6,7 @@ public abstract class Entity : MonoBehaviour
 
     [SerializeField] protected string nameEntity;
     [SerializeField] protected int livesEntity;
-    [SerializeField] protected int speedEntity;
+    [SerializeField] protected float speedEntity;
     [SerializeField] protected Vector2 limitsX;
     [SerializeField] protected Vector2 limitsZ;
 

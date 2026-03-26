@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   nameEntity: Bullet
   livesEntity: 1
-  speedEntity: 12
+  speedEntity: 15
   limitsX: {x: -8.4, y: 8.4}
   limitsZ: {x: -11, y: -1.75}
 --- !u!54 &-3272779623262994770

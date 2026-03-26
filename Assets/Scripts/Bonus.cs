@@ -4,15 +4,14 @@ using UnityEngine;
 public class Bonus : Entity
 {
     [SerializeField] private float aliveTime;
-    [SerializeField] private Renderer renderer;
+    [SerializeField] private Renderer bonusRenderer;
 
     private void Start()
     {
-        if (renderer == null)
+        if (bonusRenderer == null)
         {
-            renderer = gameObject.GetComponent<Renderer>();
+            bonusRenderer = gameObject.GetComponent<Renderer>();
         }
-        renderer.enabled = true;
         
         StartCoroutine(WaitToDestroy());
     }
@@ -29,10 +28,16 @@ public class Bonus : Entity
         while (elapsedTime < aliveTime)
         {
             elapsedTime += Time.deltaTime;
-            renderer.enabled = true;
-            yield return new WaitForSeconds(elapsedTime);
-            renderer.enabled = true;
+            yield return null;
         }
+
+        bonusRenderer.enabled = false;
+        yield return new WaitForSeconds(0.20f);
+        bonusRenderer.enabled = true;
+        yield return new WaitForSeconds(0.20f);
+        bonusRenderer.enabled = false;
+        yield return new WaitForSeconds(0.20f);
+        bonusRenderer.enabled = true;
 
         Destroy();
     }
@@ -46,7 +51,8 @@ public class Bonus : Entity
 
     protected override void LimitPosition(Vector3 position)
     {
-        if (position.z < limitsZ.y)
+        if (position.z < limitsZ.x || position.z > limitsZ.y ||
+            position.x < limitsX.x || position.x > limitsX.y)
         {
             Destroy();
         }
@@ -54,6 +60,7 @@ public class Bonus : Entity
 
     protected override void Destroy()
     {
+        Debug.Log("Bonus detruit");
         base.Destroy();
     }
 }

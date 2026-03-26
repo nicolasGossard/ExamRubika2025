@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4375325453614173916}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70813, w: 0.7060821}
+  m_LocalRotation: {x: 0, y: 0, z: -0.70813036, w: 0.70608175}
   m_LocalPosition: {x: 0, y: 0, z: -6.996384}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
@@ -72,11 +72,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   nameEntity: Bonus
   livesEntity: 1
-  speedEntity: 1
-  limitsX: {x: 0, y: 0}
-  limitsZ: {x: 0, y: -12}
+  speedEntity: 0.5
+  limitsX: {x: -9.5, y: 9.5}
+  limitsZ: {x: -12, y: 2}
   aliveTime: 2
-  renderer: {fileID: 3197450272241900578}
+  bonusRenderer: {fileID: 3197450272241900578}
 --- !u!23 &3197450272241900578
 MeshRenderer:
   m_ObjectHideFlags: 0
