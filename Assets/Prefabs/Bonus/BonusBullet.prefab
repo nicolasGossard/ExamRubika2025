@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5176812263706246583
+--- !u!1 &4375325453614173916
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1981997274822268450}
-  - component: {fileID: 1926536767026638726}
-  - component: {fileID: -8917066967601958145}
-  - component: {fileID: 3759828773034137583}
-  - component: {fileID: 1172668792906510225}
-  m_Layer: 0
-  m_Name: Astero 1
-  m_TagString: Asteroid
+  - component: {fileID: 843042813122478115}
+  - component: {fileID: 6946392865331817993}
+  - component: {fileID: 3197450272241900578}
+  - component: {fileID: 2370194725861399478}
+  - component: {fileID: 3509932020148334081}
+  m_Layer: 7
+  m_Name: BonusBullet
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1981997274822268450
+--- !u!4 &843042813122478115
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176812263706246583}
+  m_GameObject: {fileID: 4375325453614173916}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: -0.70813036, w: 0.70608175}
+  m_LocalPosition: {x: 0, y: 0, z: -6.996384}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1926536767026638726
-SphereCollider:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.166}
+--- !u!136 &6946392865331817993
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176812263706246583}
+  m_GameObject: {fileID: 4375325453614173916}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -53,35 +53,18 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5044012
-  m_Center: {x: -0.0029091835, y: 0.009399712, z: -0.0023021102}
---- !u!114 &-8917066967601958145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176812263706246583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470f7dffc4d9646b29bf3ec119bd703f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Asteroid
-  nameEntity: Astaroid
-  livesEntity: 1
-  speedEntity: 2
-  limitsX: {x: -8, y: 8}
-  limitsZ: {x: 9, y: -12}
-  bonusPrefab: {fileID: 4375325453614173916, guid: 44384c66c8cca4ea4bd86c8cd100ddff,
-    type: 3}
---- !u!23 &3759828773034137583
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &3197450272241900578
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176812263706246583}
+  m_GameObject: {fileID: 4375325453614173916}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -100,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09a7c86f5a4a6a84a84f22fbef100aa3, type: 2}
+  - {fileID: 2100000, guid: 769d8cf9d9d07474fb0b5a993c49a4ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,11 +107,30 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1172668792906510225
+--- !u!33 &2370194725861399478
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176812263706246583}
-  m_Mesh: {fileID: 7522407096486051580, guid: a683f1b6d0feb9641a4fe4985582150b, type: 3}
+  m_GameObject: {fileID: 4375325453614173916}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3509932020148334081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375325453614173916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d710295e92f584a36b1def7290d17319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BonusBullet
+  nameEntity: BonusBullet
+  livesEntity: 1
+  speedEntity: 0.5
+  limitsX: {x: -9, y: 9}
+  limitsZ: {x: -12, y: 2}
+  itemTimer: 1
+  itemRenderer: {fileID: 3197450272241900578}

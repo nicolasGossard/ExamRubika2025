@@ -1,18 +1,20 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Character
 {
-    public static event System.Action<int> OnLivesChanged;
-    public static event System.Action OnPlayerDied;
+    [Header("Paramètres du Player")]
 
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject shieldPrefab;
 
     public int bulletCount = 1;
     private float bulletSpacing = 0.5f;
     private int bulletMaxCount = 5;
 
     public int GetBulletMaxCount => bulletMaxCount;
+
+    public static event System.Action<int> OnLivesChanged;
+    public static event System.Action OnPlayerDied;
     
     private void Start()
     {
@@ -84,6 +86,12 @@ public class Player : Entity
                 Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
             }
         }
+    }
+
+    public void CreateShield()
+    {
+        GameObject shield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+        shield.transform.parent = transform;
     }
 
     void OnTriggerEnter(Collider other)

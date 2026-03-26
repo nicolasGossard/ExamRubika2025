@@ -5498,9 +5498,9 @@ MonoBehaviour:
   limitsZ: {x: -11, y: -3}
   bulletPrefab: {fileID: 5389837174213493555, guid: 90cad29684ea649b79293d21e90c32ce,
     type: 3}
+  shieldPrefab: {fileID: 1669509331396496699, guid: cd7185816cf174a688b213883c2892ce,
+    type: 3}
   bulletCount: 1
-  bulletSpacing: 0.5
-  maxBulletCount: 5
 --- !u!54 &-2077379512610359627
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusBullet : Bonus
+public class BonusShield : Item
 {
     void OnTriggerEnter(Collider other)
     {
@@ -10,10 +10,7 @@ public class BonusBullet : Bonus
 
             if (player != null)
             {
-                if (player.bulletCount++ > player.GetBulletMaxCount)
-                {
-                    player.bulletCount = player.GetBulletMaxCount;
-                }
+                player.CreateShield();
             }
 
             Destroy();

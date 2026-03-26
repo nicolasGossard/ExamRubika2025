@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6946392865331817993}
   - component: {fileID: 3197450272241900578}
   - component: {fileID: 2370194725861399478}
-  - component: {fileID: 3509932020148334081}
+  - component: {fileID: -2644295814686722971}
   m_Layer: 7
-  m_Name: Power 1
+  m_Name: BonusShield
   m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 769d8cf9d9d07474fb0b5a993c49a4ec, type: 2}
+  - {fileID: 2100000, guid: 38a935e1411a24e61bea6a267b2903fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,7 +115,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4375325453614173916}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3509932020148334081
+--- !u!114 &-2644295814686722971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,13 +124,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4375325453614173916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d710295e92f584a36b1def7290d17319, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d16ea98c942f42b39f2a4b6f0c48baf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BonusBullet
-  nameEntity: BonusBullet
+  m_EditorClassIdentifier: '::'
+  nameEntity: BonusShield
   livesEntity: 1
   speedEntity: 0.5
   limitsX: {x: -9, y: 9}
   limitsZ: {x: -12, y: 2}
-  bonusTimer: 1
-  bonusRenderer: {fileID: 3197450272241900578}
+  itemTimer: 1
+  itemRenderer: {fileID: 3197450272241900578}

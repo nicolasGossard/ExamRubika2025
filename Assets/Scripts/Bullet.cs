@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : Entity
+public class Bullet : Character
 {
     private void Update()
     {

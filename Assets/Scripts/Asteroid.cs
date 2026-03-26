@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Asteroid : Entity
+public class Asteroid : Character
 {
+    [Header("Paramètres de l'asteroid")]
+
     [SerializeField] private GameObject bonusPrefab;
 
     private void Start()

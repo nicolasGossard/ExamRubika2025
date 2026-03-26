@@ -6,9 +6,6 @@ public abstract class Entity : MonoBehaviour
 
     [SerializeField] protected string nameEntity;
     [SerializeField] protected int livesEntity;
-    [SerializeField] protected float speedEntity;
-    [SerializeField] protected Vector2 limitsX;
-    [SerializeField] protected Vector2 limitsZ;
 
     protected bool isSpawned = false;
 
@@ -31,7 +28,4 @@ public abstract class Entity : MonoBehaviour
     {
        Destroy(gameObject);
     }
-
-    public abstract void Move();
-    protected abstract void LimitPosition(Vector3 position);
 }

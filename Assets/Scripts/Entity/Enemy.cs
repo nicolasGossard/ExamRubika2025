@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Enemy : Entity
+public class Enemy : Character
 {
+    [Header("Paramètres de l'ennemi")]
+
     [SerializeField] private GameObject bonusPrefab;
     
     private void Start()
