@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2370194725861399478}
   - component: {fileID: -1488006800033771887}
   m_Layer: 7
-  m_Name: BonusTime
+  m_Name: BonusLives
   m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38a935e1411a24e61bea6a267b2903fb, type: 2}
+  - {fileID: 2100000, guid: fba9e591294074fcea96f216bdbc429b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,3 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c8fb6094c24d3d8534b90654cf37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  nameEntity: BonusLives
+  livesEntity: 1
+  itemTimer: 1
+  itemRenderer: {fileID: 3197450272241900578}

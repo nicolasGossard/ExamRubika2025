@@ -33,6 +33,12 @@ public class Player : Character
         }
     }
 
+    public void AddLives(int amount)
+    {
+        livesEntity += amount;
+        OnLivesChanged?.Invoke(livesEntity);
+    }
+
     public override void Move()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

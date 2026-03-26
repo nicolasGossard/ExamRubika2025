@@ -53,13 +53,19 @@ public class Enemy : Character
     {
         if (Pcg32.NextFloat() < 0.5f)
         {
-            if (Pcg32.RangeInt(100) <= 30)
+            int randomNumber = Pcg32.RangeInt(100);
+
+            if (randomNumber <= 15)
             {
                 Instantiate(bonusPrefab[0], transform.position, Quaternion.identity);
             }
-            else
+            else if (randomNumber <= 40)
             {
                 Instantiate(bonusPrefab[1], transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bonusPrefab[2], transform.position, Quaternion.identity);
             }
         }
     }
