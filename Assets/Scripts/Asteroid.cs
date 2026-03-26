@@ -6,11 +6,17 @@ public class Asteroid : Character
 
     [SerializeField] private GameObject bonusPrefab;
 
+    private Vector3 rotationAxis;
+    private float rotationSpeed;
+
     private void Start()
     {
         float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y); 
         transform.position = new Vector3(randomX, 0, limitsZ.x);
         isSpawned = true;
+
+        rotationAxis = Random.onUnitSphere;
+        rotationSpeed = Random.Range(1.0f, 2.0f);
     }
 
     private void Update()
@@ -18,6 +24,7 @@ public class Asteroid : Character
         if (isSpawned)
         {
             Move();
+            Turn();
         }
     }
 
@@ -45,6 +52,14 @@ public class Asteroid : Character
             {
                 player.TakeDammage(1);
             }
+        }
+    }
+
+    private void Turn()
+    {
+        if (Pcg32.NextFloat() < 0.5f)
+        {
+            transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
         }
     }
 }
