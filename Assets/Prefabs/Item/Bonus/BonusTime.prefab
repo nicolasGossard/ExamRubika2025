@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6946392865331817993}
   - component: {fileID: 3197450272241900578}
   - component: {fileID: 2370194725861399478}
-  - component: {fileID: -2644295814686722971}
+  - component: {fileID: -1488006800033771887}
   m_Layer: 7
-  m_Name: BonusShield
+  m_Name: BonusTime
   m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.70813036, w: 0.70608175}
   m_LocalPosition: {x: 0, y: 0, z: -6.996384}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,7 +115,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4375325453614173916}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &-2644295814686722971
+--- !u!114 &-1488006800033771887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,13 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4375325453614173916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d16ea98c942f42b39f2a4b6f0c48baf, type: 3}
+  m_Script: {fileID: 11500000, guid: e36c8fb6094c24d3d8534b90654cf37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  nameEntity: BonusShield
-  livesEntity: 1
-  speedEntity: 0.5
-  limitsX: {x: -9, y: 9}
-  limitsZ: {x: -12, y: 2}
-  itemTimer: 1
-  itemRenderer: {fileID: 3197450272241900578}

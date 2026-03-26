@@ -108,7 +108,7 @@ public class Player : Character
         OnLivesChanged?.Invoke(livesEntity);
     }
 
-    protected override void Destroy()
+    public override void Destroy()
     {
         OnLivesChanged?.Invoke(0);
         OnPlayerDied?.Invoke();

@@ -35,6 +35,10 @@ public abstract class Item : Entity
         itemRenderer.enabled = false;
         yield return new WaitForSeconds(0.20f);
         itemRenderer.enabled = true;
+        yield return new WaitForSeconds(0.20f);
+        itemRenderer.enabled = false;
+        yield return new WaitForSeconds(0.20f);
+        itemRenderer.enabled = true;
 
         Destroy();
     }

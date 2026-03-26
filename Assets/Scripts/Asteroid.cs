@@ -47,14 +47,4 @@ public class Asteroid : Character
             }
         }
     }
-
-    protected override void Destroy()
-    {
-        if (Pcg32.NextFloat() < 0.5f)
-        {
-            Instantiate(bonusPrefab, transform.position, Quaternion.identity);
-        }
-
-        base.Destroy();
-    }
 }

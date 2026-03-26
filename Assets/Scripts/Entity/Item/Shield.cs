@@ -6,7 +6,13 @@ public class Shield : Item
     {
         if (other.CompareTag("Enemy") || other.CompareTag("Asteroid"))
         {
-            TakeDammage(1);
+            Entity entity = other.GetComponent<Entity>();
+
+            if (entity != null)
+            {
+                entity.Destroy();
+                TakeDammage(1);
+            }
         }
     }
 }

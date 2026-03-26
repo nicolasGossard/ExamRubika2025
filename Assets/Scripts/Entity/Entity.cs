@@ -24,7 +24,7 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    protected virtual void Destroy()
+    public virtual void Destroy()
     {
        Destroy(gameObject);
     }

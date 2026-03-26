@@ -4,7 +4,7 @@ public class Enemy : Character
 {
     [Header("Paramètres de l'ennemi")]
 
-    [SerializeField] private GameObject bonusPrefab;
+    [SerializeField] private GameObject[] bonusPrefab;
     
     private void Start()
     {
@@ -43,13 +43,25 @@ public class Enemy : Character
         }
     }
 
-    protected override void Destroy()
+    public override void Destroy()
+    {
+        CreateBonus();
+        base.Destroy();
+    }
+
+    private void CreateBonus()
     {
         if (Pcg32.NextFloat() < 0.5f)
         {
-            Instantiate(bonusPrefab, transform.position, Quaternion.identity);
+            if (Pcg32.RangeInt(100) <= 30)
+            {
+                Instantiate(bonusPrefab[0], transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bonusPrefab[1], transform.position, Quaternion.identity);
+            }
         }
-
-        base.Destroy();
     }
+
 }
