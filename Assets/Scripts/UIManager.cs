@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLivesUI(int playerLives)
     {
-        string colorLives = playerLives == 3 ? "<color=green>" : playerLives == 2 ? "<color=yellow>" : "<color=red>"; 
+        string colorLives = playerLives >= 3 ? "<color=green>" : playerLives == 2 ? "<color=yellow>" : "<color=red>"; 
         livesText.text = "LIVES: " + colorLives + playerLives + "</color>";
     }
 

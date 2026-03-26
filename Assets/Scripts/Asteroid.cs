@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Asteroid : Entity
 {
+    [SerializeField] private GameObject bonusPrefab;
+
     private void Start()
     {
         float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y); 
@@ -34,16 +36,21 @@ public class Asteroid : Entity
         if (position.z < limitsZ.y)
         {
             Destroy();
+
+            Player player = FindFirstObjectByType<Player>();
+
+            if (player != null)
+            {
+                player.TakeDammage(1);
+            }
         }
     }
 
     protected override void Destroy()
     {
-        Player player = FindFirstObjectByType<Player>();
-
-        if (player != null)
+        if (Pcg32.NextFloat() < 0.5f)
         {
-            player.TakeDammage(1);
+            Instantiate(bonusPrefab, transform.position, Quaternion.identity);
         }
 
         base.Destroy();

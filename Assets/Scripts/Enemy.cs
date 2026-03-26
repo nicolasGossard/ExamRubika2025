@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    [SerializeField] private GameObject bonusPrefab;
+    
     private void Start()
     {
         float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y);
@@ -29,6 +31,23 @@ public class Enemy : Entity
         if (position.z < limitsZ.y)
         {
             Destroy();
+
+            Player player = FindFirstObjectByType<Player>();
+
+            if (player != null)
+            {
+                player.TakeDammage(1);
+            }
         }
+    }
+
+    protected override void Destroy()
+    {
+        if (Pcg32.NextFloat() < 0.5f)
+        {
+            Instantiate(bonusPrefab, transform.position, Quaternion.identity);
+        }
+
+        base.Destroy();
     }
 }

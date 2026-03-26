@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    [Header("Paramètres du character")]
+    [Header("Paramètres de l'entité")]
 
     [SerializeField] protected string nameEntity;
     [SerializeField] protected int livesEntity;

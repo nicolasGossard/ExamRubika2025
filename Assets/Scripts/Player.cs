@@ -87,7 +87,7 @@ public class Player : Entity
             for (int i = 0; i < bulletCount; i++)
             {
                 // Calcule la position avec l'offset horizontal
-                Vector3 bulletOffset = new Vector3(startX + (i * bulletSpacing), -0.5f, 0.5f);
+                Vector3 bulletOffset = new Vector3(startX + (i * bulletSpacing), 0.0f, 0.5f);
                 Vector3 spawnPosition = transform.position + bulletOffset;
 
                 // Instanciation du projectile
