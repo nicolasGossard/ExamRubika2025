@@ -24,11 +24,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         Player.OnLivesChanged += UpdateLivesUI;
+        Bonus.OnBonusCreated += UpdateBonusUI;
     }
 
     private void OnDisable()
     {
         Player.OnLivesChanged -= UpdateLivesUI;
+        Bonus.OnBonusCreated -= UpdateBonusUI;
     }
 
     ////////// AFFICHAGE DU SCORE //////////
@@ -57,9 +59,9 @@ public class UIManager : MonoBehaviour
 
     ////////// AFFICHAGE DE BONUS //////////
     
-    private void UpdateBonusUI(int bulletCount, int maxBulletCount)
+    private void UpdateBonusUI(string message)
     {
-        bonusText.text = bulletCount == maxBulletCount ? "MAX WEAPON LEVEL!  +200 SCORE" : "WEAPON UPGRADED!  BULLETS: " + bulletCount;
+        bonusText.text = message;
         StartCoroutine(UpdateBonusUICoroutine());
     }
 

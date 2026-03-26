@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.23, y: -0, z: -7.54}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,9 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   nameEntity: Shield
   livesEntity: 1
-  speedEntity: 1
-  limitsX: {x: -8.4, y: 8.4}
-  limitsZ: {x: -11, y: -3}
   itemTimer: 5
   itemRenderer: {fileID: 6856938362160953609}
 --- !u!54 &-7636563908850154212

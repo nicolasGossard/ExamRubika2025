@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusShield : Item
+public class BonusShield : Bonus
 {
     void OnTriggerEnter(Collider other)
     {
@@ -11,6 +11,7 @@ public class BonusShield : Item
             if (player != null)
             {
                 player.CreateShield();
+                TriggerBonus("SHIELD ACTIVATED!");
             }
 
             Destroy();

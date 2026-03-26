@@ -62,6 +62,8 @@ public class Enemy : Character
             else if (randomNumber <= 40)
             {
                 Instantiate(bonusPrefab[1], transform.position, Quaternion.identity);
+
+                Player player = FindFirstObjectByType<Player>();
             }
             else
             {
