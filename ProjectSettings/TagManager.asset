@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - PowerUp
   - Bullet
   - Asteroid
   - Enemy
+  - Bonus
   layers:
   - Default
   - TransparentFX

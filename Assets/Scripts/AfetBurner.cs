@@ -22,16 +22,16 @@ public class AfterburnerEffect : MonoBehaviour
 
     void Update()
     {
-        // Récupérer la vitesse actuelle du joueur (vertical input comme accélération)
+        // Rï¿½cupï¿½rer la vitesse actuelle du joueur (vertical input comme accï¿½lï¿½ration)
         float speed = Mathf.Abs(Input.GetAxis("Vertical"));
 
-        // Ajuster l'émission de particules en fonction de la vitesse
+        // Ajuster l'ï¿½mission de particules en fonction de la vitesse
         if (mainThruster != null)
         {
             emission.rateOverTimeMultiplier = Mathf.Lerp(minEmission, maxEmission, speed);
         }
 
-        // Ajuster l'intensité de la lumière
+        // Ajuster l'intensitï¿½ de la lumiï¿½re
         if (thrusterLight != null)
         {
             thrusterLight.intensity = Mathf.Lerp(minLightIntensity, maxLightIntensity, speed);

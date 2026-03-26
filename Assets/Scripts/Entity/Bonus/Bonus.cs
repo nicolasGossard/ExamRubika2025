@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bonus : Entity
+public abstract class Bonus : Entity
 {
-    [SerializeField] private float aliveTime;
+    [Header("Paramètres du bonus")]
+
+    [SerializeField] private float bonusTimer;
     [SerializeField] private Renderer bonusRenderer;
 
     private void Start()
@@ -25,7 +28,7 @@ public class Bonus : Entity
     {
         float elapsedTime = 0.0f;
 
-        while (elapsedTime < aliveTime)
+        while (elapsedTime < bonusTimer)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -56,11 +59,5 @@ public class Bonus : Entity
         {
             Destroy();
         }
-    }
-
-    protected override void Destroy()
-    {
-        Debug.Log("Bonus detruit");
-        base.Destroy();
     }
 }

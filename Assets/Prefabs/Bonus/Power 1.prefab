@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 843042813122478115}
   - component: {fileID: 6946392865331817993}
-  - component: {fileID: 2926971232026205621}
   - component: {fileID: 3197450272241900578}
   - component: {fileID: 2370194725861399478}
+  - component: {fileID: 3509932020148334081}
   m_Layer: 7
   m_Name: Power 1
-  m_TagString: PowerUp
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,33 +50,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2926971232026205621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375325453614173916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0651c7e8ea89e45e1988ef78e2c2a787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  nameEntity: Bonus
-  livesEntity: 1
-  speedEntity: 0.5
-  limitsX: {x: -9.5, y: 9.5}
-  limitsZ: {x: -12, y: 2}
-  aliveTime: 2
-  bonusRenderer: {fileID: 3197450272241900578}
 --- !u!23 &3197450272241900578
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134,3 +115,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4375325453614173916}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3509932020148334081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375325453614173916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d710295e92f584a36b1def7290d17319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BonusBullet
+  nameEntity: BonusBullet
+  livesEntity: 1
+  speedEntity: 0.5
+  limitsX: {x: -9, y: 9}
+  limitsZ: {x: -12, y: 2}
+  bonusTimer: 1
+  bonusRenderer: {fileID: 3197450272241900578}

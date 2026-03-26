@@ -8,9 +8,11 @@ public class Player : Entity
 
     [SerializeField] private GameObject bulletPrefab;
 
-    public int bulletCount = 1; // Nombre de projectiles tir�s simultan�ment
-    public float bulletSpacing = 0.5f; // Espacement horizontal entre les projectiles
-    public int maxBulletCount = 5; // Limite maximale de projectiles simultan�s
+    public int bulletCount = 1;
+    private float bulletSpacing = 0.5f;
+    private int bulletMaxCount = 5;
+
+    public int GetBulletMaxCount => bulletMaxCount;
     
     private void Start()
     {
@@ -26,18 +28,6 @@ public class Player : Entity
         {
             Move();
             Fire();
-        }
-    }
-
-    public override void TakeDammage(int amount)
-    {
-        base.TakeDammage(amount);
-
-        OnLivesChanged?.Invoke(livesEntity);
-
-        if (livesEntity <= 0)
-        {
-            OnPlayerDied?.Invoke();
         }
     }
 
@@ -94,5 +84,26 @@ public class Player : Entity
                 Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
             }
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") || other.CompareTag("Asteroid"))
+        {
+            Destroy();
+        }
+    }
+
+    public override void TakeDammage(int amount)
+    {
+        base.TakeDammage(amount);
+        OnLivesChanged?.Invoke(livesEntity);
+    }
+
+    protected override void Destroy()
+    {
+        OnLivesChanged?.Invoke(0);
+        OnPlayerDied?.Invoke();
+        base.Destroy();
     }
 }
