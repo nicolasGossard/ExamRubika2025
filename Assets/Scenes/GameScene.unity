@@ -17604,7 +17604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ManagerTest
   playerPrefab: {fileID: 6479592771335199127, guid: a111ef78c972c45f1abfe3290787537e,
     type: 3}
-  normalShipPrefab: {fileID: 0}
+  normalShipPrefab: {fileID: 196105707552078345, guid: 8cf5f807830c94bb9b7051dbe6ab6dd0,
+    type: 3}
   asteroidPrefab: {fileID: 5176812263706246583, guid: 53dcbea6496e54ef4a65f436f7476bce,
     type: 3}
   nextSpawnTime: 0

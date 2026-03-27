@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour
         BonusLives.OnBonusLivesCreated += UpdateBonusLivesUI;
 
         Enemy.AddScore += UpdateScoreUI;
+
+        ManagerTest.OnTimeChanged += UpdateTimeUI;
     }
 
     private void OnDisable()
@@ -57,6 +59,8 @@ public class UIManager : MonoBehaviour
         BonusLives.OnBonusLivesCreated   -= UpdateBonusLivesUI;
 
         Enemy.AddScore -= UpdateScoreUI;
+
+        ManagerTest.OnTimeChanged -= UpdateTimeUI;
     }
 
     private void RemoveBonusShield()
