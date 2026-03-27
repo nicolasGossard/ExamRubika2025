@@ -14,9 +14,11 @@ public class ManagerTest : MonoBehaviour
     [SerializeField] private float spawnRateDecrease = 0.2f;
     [SerializeField] private float minSpawnRate = 0.5f;
 
-    private bool isGameOver = false;
     [SerializeField] private GameObject gameOverPanel;
 
+    private bool isGameOver = false;
+    private bool isPaused = false;
+    
     public static System.Action<float> OnTimeChanged;
     private float gameTime;
     private float nextDifficultyTime;
@@ -40,9 +42,10 @@ public class ManagerTest : MonoBehaviour
         nextSpawnTime = Time.time + spawnRate;
         nextDifficultyTime = Time.time + difficultyInterval;
 
-        // On s'assure qu'au démarrage du jeu, isGameOver est bien false et que le panel est bien désactivé
+        // On s'assure qu'au démarrage du jeu, isGameOver et isPaused sont bien false et que le panel est bien désactivé
         gameOverPanel.SetActive(false);
         isGameOver = false;
+        isPaused = false;
     }
 
     void Update()
@@ -63,11 +66,31 @@ public class ManagerTest : MonoBehaviour
 
                 nextDifficultyTime = Time.time + difficultyInterval;
             }
+
+            PauseGame();
         }
         else
         {
             RestartGame();
         }
+    }
+
+    private void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                Time.timeScale = 1f;
+                isPaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                isPaused = true;
+            }
+        }
+        
     }
     
     void SpawnEnemiesAndAsteroids()
