@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class Asteroid : Character
+public class Asteroid : Enemy
 {
-    [Header("Paramètres de l'asteroid")]
+    public static event System.Action<GameObject> OnAsteroidDestroyed;
 
-    [SerializeField] private GameObject bonusPrefab;
+    [Header("Paramètres de l'asteroid")]
 
     private Vector3 rotationAxis;
     private float rotationSpeed;
 
-    private void Start()
+    protected override void Start()
     {
-        float randomX = Pcg32.RangeFloat(limitsX.x, limitsX.y); 
-        transform.position = new Vector3(randomX, 0, limitsZ.x);
-        isSpawned = true;
+        base.Start();
 
         rotationAxis = Random.onUnitSphere;
         rotationSpeed = Random.Range(1.0f, 2.0f);
@@ -28,7 +26,7 @@ public class Asteroid : Character
         }
     }
 
-    public override void Move()
+    protected override void Move()
     {
         // Direction aléatoire pour chaque astéroïde
         float randomX = Pcg32.RangeFloat(-0.5f, 0.5f);
@@ -40,26 +38,21 @@ public class Asteroid : Character
         LimitPosition(transform.position);
     }
 
-    protected override void LimitPosition(Vector3 position)
-    {
-        if (position.z < limitsZ.y)
-        {
-            Destroy();
-
-            Player player = FindFirstObjectByType<Player>();
-
-            if (player != null)
-            {
-                player.TakeDammage(1);
-            }
-        }
-    }
-
     private void Turn()
     {
         if (Pcg32.NextFloat() < 0.5f)
         {
             transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
         }
+    }
+
+    public override void Destroy()
+    {
+        OnAsteroidDestroyed?.Invoke(gameObject);
+
+        isSpawned = false;
+        enabled = false;
+
+        base.Destroy();
     }
 }

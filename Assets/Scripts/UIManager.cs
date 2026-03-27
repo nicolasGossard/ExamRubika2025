@@ -12,8 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[]   bonusStates;
     [SerializeField] private Slider[]       sliderStates;
 
+    private int score;
+
     void Start()
     {
+        score = 0;
         scoreText.enabled = true;
         livesText.enabled = true;
         timeText.enabled  = true;
@@ -24,6 +27,8 @@ public class UIManager : MonoBehaviour
             bonusStates[i].SetActive(false);
             sliderStates[i].value = 1f;
         }
+
+        UpdateScoreUI(0);
     }
 
     ////////// ABONNEMENTS //////////
@@ -37,6 +42,8 @@ public class UIManager : MonoBehaviour
 
         BonusBullet.OnBonusBulletCreated += UpdateBonusBulletUI;
         BonusLives.OnBonusLivesCreated += UpdateBonusLivesUI;
+
+        Enemy.AddScore += UpdateScoreUI;
     }
 
     private void OnDisable()
@@ -48,6 +55,8 @@ public class UIManager : MonoBehaviour
 
         BonusBullet.OnBonusBulletCreated -= UpdateBonusBulletUI;
         BonusLives.OnBonusLivesCreated   -= UpdateBonusLivesUI;
+
+        Enemy.AddScore -= UpdateScoreUI;
     }
 
     private void RemoveBonusShield()
@@ -57,9 +66,10 @@ public class UIManager : MonoBehaviour
 
     ////////// AFFICHAGE DU SCORE //////////
 
-    private void UpdateScoreUI(int newScore)
+    private void UpdateScoreUI(int amount)
     {
-        scoreText.text = "SCORE: " + newScore;
+        score += amount;
+        scoreText.text = "SCORE: " + score;
     }
 
     ////////// AFFICHAGE DE LA VIE //////////
@@ -125,7 +135,7 @@ public class UIManager : MonoBehaviour
                          "MAX WEAPON LEVEL!  +200 SCORE" :
                          "WEAPON UPGRADED!  BULLETS: " + player.bulletCount;
         StartCoroutine(UpdateBonusTextCoroutine());
-        StartCoroutine(UpdateBonusSliderCoroutine(1, 10.0f));
+        StartCoroutine(UpdateBonusSliderCoroutine(1, 15.0f));
     }
 
     private IEnumerator UpdateBonusSliderCoroutine(int num, float effectTimer)

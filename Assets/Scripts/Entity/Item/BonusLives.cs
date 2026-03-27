@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusLives : Bonus
+public class BonusLives : Item
 {
     public static event System.Action OnBonusLivesCreated;
 

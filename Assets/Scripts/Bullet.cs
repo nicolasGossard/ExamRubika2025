@@ -7,7 +7,7 @@ public class Bullet : Character
         Move();
     }
 
-    public override void Move()
+    protected override void Move()
     {
         transform.position += Vector3.forward * speedEntity * Time.deltaTime;
 
@@ -26,11 +26,11 @@ public class Bullet : Character
     {
         if (other.CompareTag("Enemy") || other.CompareTag("Asteroid"))
         {
-            Entity entity = other.GetComponent<Entity>();
+            Enemy enemy = other.GetComponent<Enemy>();
 
-            if (entity != null)
+            if (enemy != null)
             {
-                entity.TakeDammage(1);
+                enemy.TakeDammage(1);
 
                 // Le missile aussi prend un de dégat quand il touche l'obstacle, et  
                 // vu qu'il a un seul point de vie il se détruira à ce moment là

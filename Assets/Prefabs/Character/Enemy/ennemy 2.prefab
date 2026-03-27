@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7983166471606385406}
   - component: {fileID: 31460794544891436}
   - component: {fileID: 894851725291328972}
-  - component: {fileID: -4772805087061208072}
+  - component: {fileID: 9044528301307526620}
   m_Layer: 0
   m_Name: ennemy 2
   m_TagString: Enemy
@@ -117,7 +117,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8299998, y: 0.5756485, z: 1.0023429}
   m_Center: {x: 0.0000029802322, y: 0.019061238, z: 0.00034856796}
---- !u!114 &-4772805087061208072
+--- !u!114 &9044528301307526620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,14 +126,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 196105707552078345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e35eada1fc7458a9baf1f26c90488a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bc8e68146229476d941cf7f77045977, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  nameEntity: Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::NormalShip
+  nameEntity: NormalShip
   livesEntity: 2
   speedEntity: 3
   limitsX: {x: -8, y: 8}
   limitsZ: {x: 9, y: -12}
+  enemyValue: 100
   bonusPrefab:
   - {fileID: 4375325453614173916, guid: d5342cee0cb514cad8607fced7a342a0, type: 3}
   - {fileID: 4375325453614173916, guid: 6372e6f0378d54207a50ea3bf47ac3e9, type: 3}

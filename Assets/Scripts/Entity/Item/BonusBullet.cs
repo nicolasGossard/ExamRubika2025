@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusBullet : Bonus
+public class BonusBullet : Item
 {
     public static event System.Action OnBonusBulletCreated;
 

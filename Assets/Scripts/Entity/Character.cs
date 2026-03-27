@@ -8,6 +8,6 @@ public abstract class Character : Entity
     [SerializeField] protected Vector2 limitsX;
     [SerializeField] protected Vector2 limitsZ;
     
-    public abstract void Move();
+    protected abstract void Move();
     protected abstract void LimitPosition(Vector3 position);
 }

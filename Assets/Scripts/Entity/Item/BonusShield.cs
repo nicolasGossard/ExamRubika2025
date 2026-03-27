@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusShield : Bonus
+public class BonusShield : Item
 {
     public static event System.Action OnBonusShieldCreated;
 

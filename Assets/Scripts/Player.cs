@@ -11,7 +11,7 @@ public class Player : Character
     public int bulletCount = 1;
     private float bulletSpacing = 0.5f;
     private int bulletMaxCount = 5;
-    public float bulletTimer = 10.0f;
+    public float bulletTimer = 15.0f;
 
     public int GetBulletMaxCount => bulletMaxCount;
 
@@ -73,7 +73,7 @@ public class Player : Character
         RemoveBullet(1);
     }
 
-    public override void Move()
+    protected override void Move()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");

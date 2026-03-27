@@ -1,12 +1,9 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class ManagerTest : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject normalShipPrefab;
     [SerializeField] private GameObject asteroidPrefab;
 
     [SerializeField] private float nextSpawnTime;
@@ -53,7 +50,7 @@ public class ManagerTest : MonoBehaviour
         {
             if (Pcg32.NextFloat() < 0.3f)
             {
-                Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
+                Instantiate(normalShipPrefab, Vector3.zero, Quaternion.identity);
             }
             else
             {

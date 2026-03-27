@@ -15,9 +15,19 @@ public class ExplosionManager : MonoBehaviour
     public float scaleVariation = 0.3f;
     public float velocityVariation = 0.5f;
 
+    private void OnEnable()
+    {
+        Asteroid.OnAsteroidDestroyed += ExplodeObject;
+    }
+
+    private void OnDisable()
+    {
+        Asteroid.OnAsteroidDestroyed -= ExplodeObject;
+    }
+
     public void ExplodeObject(GameObject objectToExplode)
     {
-        // Récupérer le MeshRenderer et le MeshFilter de l'objet
+        // Rï¿½cupï¿½rer le MeshRenderer et le MeshFilter de l'objet
         MeshRenderer meshRenderer = objectToExplode.GetComponent<MeshRenderer>();
         if(meshRenderer == null ) { meshRenderer= objectToExplode.GetComponentInChildren<MeshRenderer>(); }
         MeshFilter meshFilter = objectToExplode.GetComponent<MeshFilter>();
