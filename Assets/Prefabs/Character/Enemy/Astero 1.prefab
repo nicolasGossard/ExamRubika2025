@@ -74,7 +74,7 @@ MonoBehaviour:
   limitsX: {x: -8, y: 8}
   limitsZ: {x: 9, y: -12}
   enemyValue: 50
-  normalShipValue: 0
+  rend: {fileID: 3759828773034137583}
 --- !u!23 &3759828773034137583
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131,4 +131,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5176812263706246583}
-  m_Mesh: {fileID: 7522407096486051580, guid: a683f1b6d0feb9641a4fe4985582150b, type: 3}
+  m_Mesh: {fileID: 7522407096486051580, guid: 0447dc18ce2f04aa08044490b4684d98, type: 3}

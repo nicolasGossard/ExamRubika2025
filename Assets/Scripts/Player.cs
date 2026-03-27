@@ -53,10 +53,7 @@ public class Player : Character
 
     public void RemoveBullet(int amount)
     {
-        if ((bulletCount -= amount) < 1)
-        {
-            bulletCount = 1;
-        }
+        bulletCount = 1;
     }
 
     private IEnumerator BulletEffect()
