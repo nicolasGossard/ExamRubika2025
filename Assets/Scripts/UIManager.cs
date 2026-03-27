@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public TMPro.TMP_Text scoreText;
-    public TMPro.TMP_Text livesText;
-    public TMPro.TMP_Text timeText;
-    public TMPro.TMP_Text bonusText;
-    public TMPro.TMP_Text countdownText;
+    [SerializeField] private TMPro.TMP_Text scoreText;
+    [SerializeField] private TMPro.TMP_Text livesText;
+    [SerializeField] private TMPro.TMP_Text timeText;
+    [SerializeField] private TMPro.TMP_Text bonusText;
 
-    private bool isSubscribed = false;
+    [SerializeField] private GameObject[]   bonusStates;
+    [SerializeField] private Slider[]       sliderStates;
 
     void Start()
     {
@@ -17,6 +18,12 @@ public class UIManager : MonoBehaviour
         livesText.enabled = true;
         timeText.enabled  = true;
         bonusText.enabled = false;
+
+        for (int i = 0; i < bonusStates.Length; i++)
+        {
+            bonusStates[i].SetActive(false);
+            sliderStates[i].value = 1f;
+        }
     }
 
     ////////// ABONNEMENTS //////////
@@ -24,13 +31,28 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         Player.OnLivesChanged += UpdateLivesUI;
-        Bonus.OnBonusCreated += UpdateBonusUI;
+
+        BonusShield.OnBonusShieldCreated += UpdateBonusShieldUI;
+        Shield.OnShieldBreaked += RemoveBonusShield;
+
+        BonusBullet.OnBonusBulletCreated += UpdateBonusBulletUI;
+        BonusLives.OnBonusLivesCreated += UpdateBonusLivesUI;
     }
 
     private void OnDisable()
     {
         Player.OnLivesChanged -= UpdateLivesUI;
-        Bonus.OnBonusCreated -= UpdateBonusUI;
+
+        BonusShield.OnBonusShieldCreated -= UpdateBonusShieldUI;
+        Shield.OnShieldBreaked -= RemoveBonusShield;
+
+        BonusBullet.OnBonusBulletCreated -= UpdateBonusBulletUI;
+        BonusLives.OnBonusLivesCreated   -= UpdateBonusLivesUI;
+    }
+
+    private void RemoveBonusShield()
+    {
+        bonusStates[0].SetActive(false);
     }
 
     ////////// AFFICHAGE DU SCORE //////////
@@ -44,7 +66,31 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLivesUI(int playerLives)
     {
-        string colorLives = playerLives >= 3 ? "<color=green>" : playerLives == 2 ? "<color=yellow>" : "<color=red>"; 
+        string colorLives = "";
+
+        if (playerLives >= 3)
+        {
+            colorLives = "<color=green>";
+        }
+        else if (playerLives == 2)
+        {
+            colorLives = "<color=yellow>";
+        }
+        else if (playerLives == 1)
+        {
+            colorLives = "<color=red>";
+        }
+        else
+        {
+            colorLives = "<color=red>";
+
+            for (int i = 0; i < bonusStates.Length; i++)
+            {
+                bonusStates[i].SetActive(false);
+                sliderStates[i].value = 0f;
+            }
+        }
+
         livesText.text = "LIVES: " + colorLives + playerLives + "</color>";
     }
 
@@ -57,15 +103,52 @@ public class UIManager : MonoBehaviour
         timeText.text = string.Format("TIME: {0:00}:{1:00}", minutes, seconds);
     }
 
-    ////////// AFFICHAGE DE BONUS //////////
+    ////////// AFFICHAGE DES BONUS //////////
     
-    private void UpdateBonusUI(string message)
+    private void UpdateBonusLivesUI()
     {
-        bonusText.text = message;
-        StartCoroutine(UpdateBonusUICoroutine());
+        bonusText.text = "LIFE UP! +1 LIFE";
+        StartCoroutine(UpdateBonusTextCoroutine());
+    }
+    
+    private void UpdateBonusShieldUI()
+    {
+        bonusText.text = "SHIELD ACTIVATED!";
+        StartCoroutine(UpdateBonusTextCoroutine());
+        StartCoroutine(UpdateBonusSliderCoroutine(0, 5.0f));
     }
 
-    private IEnumerator UpdateBonusUICoroutine()
+    private void UpdateBonusBulletUI()
+    {
+        Player player = FindFirstObjectByType<Player>();
+        bonusText.text = player.bulletCount == player.GetBulletMaxCount ?
+                         "MAX WEAPON LEVEL!  +200 SCORE" :
+                         "WEAPON UPGRADED!  BULLETS: " + player.bulletCount;
+        StartCoroutine(UpdateBonusTextCoroutine());
+        StartCoroutine(UpdateBonusSliderCoroutine(1, 10.0f));
+    }
+
+    private IEnumerator UpdateBonusSliderCoroutine(int num, float effectTimer)
+    {
+        bonusStates[num].SetActive(true);
+        sliderStates[num].value = 1.0f;
+
+        float duration = effectTimer;
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            sliderStates[num].value = Mathf.Lerp(1f, 0f, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        sliderStates[num].value = 0f;
+        bonusStates[num].SetActive(false);
+    } 
+
+    private IEnumerator UpdateBonusTextCoroutine()
     {
         bonusText.enabled = true;
         yield return new WaitForSeconds(2.0f);

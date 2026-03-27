@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BonusLives : Bonus
 {
+    public static event System.Action OnBonusLivesCreated;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -11,7 +13,7 @@ public class BonusLives : Bonus
             if (player != null)
             {
                 player.AddLives(1);
-                TriggerBonus("LIFE UP! +1 LIFE");
+                OnBonusLivesCreated?.Invoke();
             }
 
             Destroy();

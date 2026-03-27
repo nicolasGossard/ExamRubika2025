@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : Character
@@ -10,6 +11,7 @@ public class Player : Character
     public int bulletCount = 1;
     private float bulletSpacing = 0.5f;
     private int bulletMaxCount = 5;
+    public float bulletTimer = 10.0f;
 
     public int GetBulletMaxCount => bulletMaxCount;
 
@@ -37,6 +39,38 @@ public class Player : Character
     {
         livesEntity += amount;
         OnLivesChanged?.Invoke(livesEntity);
+    }
+
+    public void AddBullet(int amount)
+    {
+        if ((bulletCount += amount) > bulletMaxCount)
+        {
+            bulletCount = bulletMaxCount;
+        }
+
+        StartCoroutine(BulletEffect());
+    }
+
+    public void RemoveBullet(int amount)
+    {
+        if ((bulletCount -= amount) < 1)
+        {
+            bulletCount = 1;
+        }
+    }
+
+    private IEnumerator BulletEffect()
+    {
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < bulletTimer)
+        {
+            float t = elapsedTime / bulletTimer;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        RemoveBullet(1);
     }
 
     public override void Move()

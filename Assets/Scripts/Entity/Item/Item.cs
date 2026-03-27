@@ -8,6 +8,8 @@ public abstract class Item : Entity
     [SerializeField] private float itemTimer;
     [SerializeField] private Renderer itemRenderer;
 
+    public float GetItemTimer => itemTimer;
+
     protected virtual void Start()
     {
         if (itemRenderer == null)

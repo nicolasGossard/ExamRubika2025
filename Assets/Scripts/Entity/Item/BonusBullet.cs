@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BonusBullet : Bonus
 {
+    public static event System.Action OnBonusBulletCreated;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -10,14 +12,8 @@ public class BonusBullet : Bonus
 
             if (player != null)
             {
-                if (player.bulletCount++ > player.GetBulletMaxCount)
-                {
-                    player.bulletCount = player.GetBulletMaxCount;
-                }
-
-                TriggerBonus(player.bulletCount == player.GetBulletMaxCount ?
-                                       "MAX WEAPON LEVEL!  +200 SCORE" :
-                                       "WEAPON UPGRADED!  BULLETS: " + player.bulletCount);
+                player.AddBullet(1);
+                OnBonusBulletCreated?.Invoke();
             }
 
             Destroy();

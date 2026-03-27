@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BonusShield : Bonus
 {
+    public static event System.Action OnBonusShieldCreated;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -11,7 +13,7 @@ public class BonusShield : Bonus
             if (player != null)
             {
                 player.CreateShield();
-                TriggerBonus("SHIELD ACTIVATED!");
+                OnBonusShieldCreated?.Invoke();
             }
 
             Destroy();
