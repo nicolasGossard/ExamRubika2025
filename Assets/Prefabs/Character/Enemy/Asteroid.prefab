@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3759828773034137583}
   - component: {fileID: 1172668792906510225}
   m_Layer: 0
-  m_Name: Astero 1
+  m_Name: Asteroid
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,4 +131,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5176812263706246583}
-  m_Mesh: {fileID: 7522407096486051580, guid: 0447dc18ce2f04aa08044490b4684d98, type: 3}
+  m_Mesh: {fileID: 7522407096486051580, guid: a55d9c642b1384d87b921d946e4cad61, type: 3}
