@@ -6,15 +6,15 @@ public class Asteroid : Enemy
 
     [Header("Paramètres de l'asteroid")]
 
-    private Vector3 rotationAxis;
     private float rotationSpeed;
+    private Vector3 rotationAxis;
 
     protected override void Start()
     {
         base.Start();
 
+        rotationSpeed = Pcg32.RangeFloat(50.0f, 300.0f);
         rotationAxis = Random.onUnitSphere;
-        rotationSpeed = Random.Range(1.0f, 2.0f);
     }
 
     private void Update()
@@ -33,17 +33,13 @@ public class Asteroid : Enemy
 
         Vector3 movement = new Vector3(randomX, 0, -1) * speedEntity * Time.deltaTime;
         transform.position += movement;
-        transform.Rotate(0, 30 * Time.deltaTime, 0);
 
         LimitPosition(transform.position);
     }
 
     private void Turn()
     {
-        if (Pcg32.NextFloat() < 0.5f)
-        {
-            transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
-        }
+        transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
     }
 
     public override void Destroy()
