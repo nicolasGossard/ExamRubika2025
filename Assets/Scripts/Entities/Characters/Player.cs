@@ -112,7 +112,7 @@ public class Player : Character
             // Calcul de la position de d�part pour centrer les projectiles
             float startX = -((bulletCount - 1) * bulletSpacing) / 2;
 
-            // Cr�ation de plusieurs balles c�te � c�te
+            // Création de plusieurs balles c�te � c�te
             for (int i = 0; i < bulletCount; i++)
             {
                 // Calcule la position avec l'offset horizontal

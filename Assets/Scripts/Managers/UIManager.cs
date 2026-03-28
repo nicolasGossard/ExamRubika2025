@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
 
         Enemy.AddScore += UpdateScoreUI;
 
-        ManagerTest.OnTimeChanged += UpdateTimeUI;
+        GameManager.OnTimeChanged += UpdateTimeUI;
     }
 
     private void OnDisable()
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
         Enemy.AddScore -= UpdateScoreUI;
 
-        ManagerTest.OnTimeChanged -= UpdateTimeUI;
+        GameManager.OnTimeChanged -= UpdateTimeUI;
     }
 
     private void RemoveBonusShield()

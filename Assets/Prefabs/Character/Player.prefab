@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3624910086841720900}
   - component: {fileID: 9116085047012666042}
   m_Layer: 3
-  m_Name: Point Light (1)
+  m_Name: RightLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7934792987050366199}
   - component: {fileID: 3920406794160945533}
   m_Layer: 3
-  m_Name: Point Light
+  m_Name: LeftLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +213,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 9073626590025515098}
   - component: {fileID: 8791721072796615985}
   m_Layer: 3
-  m_Name: Particle System
+  m_Name: ParticulesLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5226,15 +5226,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3678995423026418829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fccd5759f7731e44b4e22661f89049f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c2621a1d1d6f473fb29b9f3fe6b1f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainThruster: {fileID: 2705688898612265719}
   thrusterLight: {fileID: 7934792987050366199}
-  minEmission: 0
+  minEmission: 5
   maxEmission: 50
   minLightIntensity: 0.5
-  maxLightIntensity: 30
+  maxLightIntensity: 3
 --- !u!1 &5662586284612829628
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,7 +5247,7 @@ GameObject:
   - component: {fileID: 5815751763583753697}
   - component: {fileID: 7241426235167714970}
   m_Layer: 3
-  m_Name: Point Light
+  m_Name: PrincipalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5321,7 +5321,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -5377,7 +5377,7 @@ GameObject:
   - component: {fileID: 6112346150428027414}
   - component: {fileID: -2077379512610359627}
   m_Layer: 3
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5542,7 +5542,7 @@ GameObject:
   - component: {fileID: 3892467125761024290}
   - component: {fileID: 4368756234676215350}
   m_Layer: 3
-  m_Name: Particle System (1)
+  m_Name: ParticulesRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10501,12 +10501,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6493261234356291432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fccd5759f7731e44b4e22661f89049f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c2621a1d1d6f473fb29b9f3fe6b1f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainThruster: {fileID: 8863542623559109953}
   thrusterLight: {fileID: 3624910086841720900}
-  minEmission: 0
+  minEmission: 5
   maxEmission: 50
   minLightIntensity: 0.5
-  maxLightIntensity: 30
+  maxLightIntensity: 3

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ManagerTest : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject normalShipPrefab;
