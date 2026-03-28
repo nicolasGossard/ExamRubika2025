@@ -89,10 +89,15 @@ public class ExplosionManager : MonoBehaviour
             // Copy original transform
             fragment.transform.position = position;
             fragment.transform.rotation = rotation;
-            float originalScale = originalObject.transform.localScale.x;
-            // Apply scale variation
-            float scaleMultiplier = Random.Range(originalScale - scaleVariation, originalScale) * 0.5f;
-            fragment.transform.localScale = scale * scaleMultiplier;
+            
+            // Taille de référence de l'astéroïde (0.8 / 1.2 / 1.6)
+            float asteroidSize = originalObject.transform.localScale.x;
+
+            // Variation des fragments (indépendante de la taille globale)
+            float randomFactor = Random.Range(0.3f, 0.6f);
+
+            // Taille finale = proportion de l'astéroïde
+            fragment.transform.localScale = Vector3.one * asteroidSize * randomFactor;
 
             // Add mesh components
             MeshFilter fragmentMeshFilter = fragment.AddComponent<MeshFilter>();
