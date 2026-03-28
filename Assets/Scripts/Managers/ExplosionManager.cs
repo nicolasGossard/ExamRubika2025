@@ -17,12 +17,12 @@ public class ExplosionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Asteroid.OnAsteroidDestroyed += ExplodeObject;
+        Enemy.OnEnemyDestroyed += ExplodeObject;
     }
 
     private void OnDisable()
     {
-        Asteroid.OnAsteroidDestroyed -= ExplodeObject;
+        Enemy.OnEnemyDestroyed -= ExplodeObject;
     }
 
     public void ExplodeObject(GameObject objectToExplode)
@@ -94,7 +94,7 @@ public class ExplosionManager : MonoBehaviour
             float asteroidSize = originalObject.transform.localScale.x;
 
             // Variation des fragments (indépendante de la taille globale)
-            float randomFactor = Random.Range(0.3f, 0.6f);
+            float randomFactor = Random.Range(0.2f, 0.5f);
 
             // Taille finale = proportion de l'astéroïde
             fragment.transform.localScale = Vector3.one * asteroidSize * randomFactor;

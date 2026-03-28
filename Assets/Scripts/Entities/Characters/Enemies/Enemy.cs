@@ -4,12 +4,13 @@ using System.Collections;
 public abstract class Enemy : Character
 {
     public static event System.Action<int> AddScore;
+    public static event System.Action<GameObject> OnEnemyDestroyed;
 
     [Header("Paramètres de l'ennemi")]
 
     [SerializeField] private int enemyValue;
+    
     [SerializeField] private Renderer rend;
-
     private Color originalColor;
 
     protected virtual void Start()
@@ -45,22 +46,21 @@ public abstract class Enemy : Character
     {
         livesEntity -= amount;
 
-        if (livesEntity >= 1)
-        {
-            StartCoroutine(FlashRed());
-        }
-        else if (livesEntity <= 0)
+        if (livesEntity <= 0)
         {
             AddScorePlayer(enemyValue);
             Destroy();
         }
     }
 
-    private IEnumerator FlashRed()
+    public override void Destroy()
     {
-        rend.material.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        rend.material.color = originalColor;
+        OnEnemyDestroyed?.Invoke(gameObject);
+
+        isSpawned = false;
+        enabled = false;
+
+        base.Destroy();
     }
 
     protected virtual void AddScorePlayer(int amount)

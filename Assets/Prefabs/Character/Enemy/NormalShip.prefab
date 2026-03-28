@@ -136,6 +136,8 @@ MonoBehaviour:
   limitsZ: {x: 9, y: -12}
   enemyValue: 100
   rend: {fileID: 31460794544891436}
+  duration: 0.2
+  magnitude: 0.025
   bonusPrefab:
   - {fileID: 4375325453614173916, guid: d5342cee0cb514cad8607fced7a342a0, type: 3}
   - {fileID: 4375325453614173916, guid: 6372e6f0378d54207a50ea3bf47ac3e9, type: 3}

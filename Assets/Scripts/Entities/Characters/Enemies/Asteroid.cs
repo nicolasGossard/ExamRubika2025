@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Asteroid : Enemy
 {
-    public static event System.Action<GameObject> OnAsteroidDestroyed;
-
     [Header("Paramètres de l'asteroid")]
 
     private float rotationSpeed;
@@ -16,11 +14,6 @@ public class Asteroid : Enemy
         base.Start();
 
         RandomStart();
-
-        
-
-        // Taille aléatoire entre 0.8f, 1.2f et 1.6f au démarrage pour chaque astéroide
-       
     }
 
     private void RandomStart()
@@ -79,15 +72,5 @@ public class Asteroid : Enemy
     private void Turn()
     {
         transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
-    }
-
-    public override void Destroy()
-    {
-        OnAsteroidDestroyed?.Invoke(gameObject);
-
-        isSpawned = false;
-        enabled = false;
-
-        base.Destroy();
     }
 }
